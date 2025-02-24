@@ -1,9 +1,11 @@
+/**
+ * Processes a folder and loads its file attributes into a Google Sheet.
+ *
+ * @param {string} folderName - The name of the folder to process.
+ * @param {Folder} [parentFolder=findOrCreateFolderByName('Sources Management')] - The parent folder to search in.
+ * @param {string} [sheetName="Sources"] - The name of the Google Sheet to load the data into.
+ */
 function processFolderAndLoadFiles(folderName = "Sources Collection", parentFolder = findOrCreateFolderByName('Sources Management'), sheetName = "Sources") {
-  /**
-   * Processes a folder and loads its file attributes into a Google Sheet.
-   *
-   * @param {string} folderName The name of the folder to process.
-   */
   try {
     // 1. Find or create the folder
     var folder = findOrCreateFolderByName(folderName, parentFolder);
@@ -26,6 +28,7 @@ function processFolderAndLoadFiles(folderName = "Sources Collection", parentFold
     var files = folder.getFiles();
     var fileData = [];
     var fileList = [];
+
     // 6. Iterate through the files and extract attributes
     while (files.hasNext()) {
       var file = files.next();
@@ -36,52 +39,23 @@ function processFolderAndLoadFiles(folderName = "Sources Collection", parentFold
         file.getMimeType(), // Type
         file.getSize(), // Bytes
         file.getDateCreated(), // Created
-        file.getLastUpdated() // Modified
-        /*
-        "", // Folder
-        "", // Moved
-        "", // Folders
-        "", // Note
-        "", // Duplicate
-        "", // Rename
-        "", // Regex
-        "", // Reliability
-        "", // Authors
-        "", // Published
-        "", // Keywords
-        ""  // Copyright
-        */
+        file.getLastUpdated() // Updated
       ];
       fileData.push(rowData);
       fileList.push(file);
     }
+
     var destination = findOrCreateFolderByName('Sources Inventory', parentFolder);
+
     // 7. Write the file data to the sheet
-    console.log({ processFolderAndLoadFiles: fileData })
+    console.log({ processFolderAndLoadFiles: fileData });
     sheet.getRange(sheet.getLastRow() + 1, 1, fileData.length, fileData[0].length).setValues(fileData);
+
+    // 8. Move files to the destination folder
     for (var file of fileList) {
       file.moveTo(destination);
     }
   } catch (e) {
     Logger.log("Error processing folder and loading files: " + e);
-  }
-}
-
-// Example usage:
-function testProcessFolder() {
-  processFolderAndLoadFiles("Sources Collection", findOrCreateFolderByName('Sources Management')); // Replace with your folder name
-}
-
-function maintainInventory() {
-  var parentFolder = findOrCreateFolderByName('Sources Management');
-  var destination = findOrCreateFolderByName('Sources Inventory', parentFolder);
-  var files = SpreadsheetApp.getActive().getSheetByName('Sources').getDataRange().getValues().slice(1);
-  for (var file of files) {
-    var url = file[1];
-    console.log({ url })
-    var id = extractFileIdFromUrl(url);
-    //console.log({id})
-    //.split('/')[];
-    DriveApp.getFileById(id).moveTo(destination);
   }
 }

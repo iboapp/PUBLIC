@@ -1,7 +1,7 @@
+/**
+ * Creates a custom menu in Google Sheets when the document is opened.
+ */
 function onOpen() {
-  /**
-   * Creates a custom menu in Google Sheets when the document is opened.
-   */
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('App')
     .addItem('Process collection folder and load Files', 'processFolderAndLoadFiles')
