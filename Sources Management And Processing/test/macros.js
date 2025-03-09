@@ -12,7 +12,7 @@ function UntitledMacro() {
 };
 
 function testH16(){
-  var sheet = getSourcesSheet();
+  var sheet = getSourceSheet();
   var v = sheet.getRange('H16').getValue();
   // Multiselect >> Content Marketing, Social Media
 console.log( typeof v, v)

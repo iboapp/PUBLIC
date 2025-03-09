@@ -1,0 +1,31 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Google Apps Script files
+.clasp.json
+appsscript.json
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore environment variables
+.env
+
+# Ignore any other sensitive or temporary files
+*.bak
+*.backup

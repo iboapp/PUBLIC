@@ -1,9 +1,9 @@
 /**
- * Renames files based on the data in the 'Sources' sheet.
+ * Renames files based on the data in the 'Source' sheet.
  * If a file has a new name specified in the 'Rename' column, it renames the file and updates the sheet.
  */
 function renameFiles() {
-  var sheet = getSourcesSheet();
+  var sheet = getSourceSheet();
   var files = getSheetDataAsObjects(sheet);
   var schema = getSchemaFromSheet(sheet);
 

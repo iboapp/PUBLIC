@@ -3,10 +3,10 @@
  * If a file is already in a folder, it creates a shortcut in the new folder.
  */
 function moveFilesToFolders() {
-  var sheet = getSourcesSheet();
+  var sheet = getSourceSheet();
   var files = getSheetDataAsObjects(sheet);
   var schema = getSchemaFromSheet(sheet);
-  var parentFolder = findOrCreateFolderByName('Sources Inventory', getRootFolder());
+  var parentFolder = findOrCreateFolderByName(FolderName.SOURCES_INVENTORY, getRootFolder());
   const updateFolderSheet = true;
 
   for (var fileData of files) {

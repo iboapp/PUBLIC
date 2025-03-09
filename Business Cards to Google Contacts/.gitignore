@@ -1,0 +1,6 @@
+# Ignore Google Apps Script files
+.clasp.json
+appsscript.json
+
+# Ignore all files in the test folder
+test/

@@ -5,6 +5,7 @@ function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('App')
     .addItem('Process collection folder and load Files', 'processFolderAndLoadFiles')
+    .addItem( 'Extract and delete ZIP files', 'extractAndDeleteZipFiles')
     .addItem('Move files to topic folders', 'moveFilesToFolders')
     .addItem('Update folder urls', 'updateFolderUrls')
     .addItem('Rename files', 'renameFiles')

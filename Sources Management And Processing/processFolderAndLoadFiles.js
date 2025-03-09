@@ -2,10 +2,10 @@
  * Processes a folder and loads its file attributes into a Google Sheet.
  *
  * @param {string} folderName - The name of the folder to process.
- * @param {Folder} [parentFolder=findOrCreateFolderByName('Sources Management')] - The parent folder to search in.
+ * @param {Folder} [parentFolder=getRootFolder()] - The parent folder to search in.
  * @param {string} [sheetName="Sources"] - The name of the Google Sheet to load the data into.
  */
-function processFolderAndLoadFiles(folderName = "Sources Collection", parentFolder = findOrCreateFolderByName('Sources Management'), sheetName = "Sources") {
+function processFolderAndLoadFiles(folderName = FolderName.SOURCES_COLLECTION, parentFolder = getRootFolder(), sheetName = SheetName.SOURCES) {
   try {
     // 1. Find or create the folder
     var folder = findOrCreateFolderByName(folderName, parentFolder);
@@ -45,7 +45,7 @@ function processFolderAndLoadFiles(folderName = "Sources Collection", parentFold
       fileList.push(file);
     }
 
-    var destination = findOrCreateFolderByName('Sources Inventory', parentFolder);
+    var destination = findOrCreateFolderByName(FolderName.SOURCES_INVENTORY, parentFolder);
 
     // 7. Write the file data to the sheet
     console.log({ processFolderAndLoadFiles: fileData });
