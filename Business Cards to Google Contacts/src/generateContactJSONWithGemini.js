@@ -1,4 +1,4 @@
-var CUSTOM_FIELD_NAME = 'BusinesCard';
+var CUSTOM_FIELD_NAME = 'business card';
 
 /**
  * Generates a contact JSON object suitable for the Google People API using the Gemini API.
@@ -99,12 +99,17 @@ function generateContactJSONWithGemini(textString, businessCardUrl, apiUrl = get
         ];
 
         if (businessCardUrl) {
-          // Add the custom field to the contactData
-          contactJson.userDefined = contactJson.userDefined || [];
-          contactJson.userDefined.push({
-            "key": CUSTOM_FIELD_NAME,
-            "value": businessCardUrl
+          // Add the URL to the contactData
+          contactJson.urls = contactJson.urls || [];
+          contactJson.urls.push({
+            "value": businessCardUrl,
+            "type": "custom",
+            "formattedType": CUSTOM_FIELD_NAME //setting the label as custom
           });
+        }
+
+        if (contactJson.names && contactJson.names.length > 1) {
+          contactJson.names = contactJson.names.slice(-1); // TODO das reicht nur für zwei Namen den zweiten Namen = 2. Kontakt!!
         }
 
         logJsonRecord(contactJson); // Log the corrected JSON
