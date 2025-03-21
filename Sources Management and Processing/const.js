@@ -6,10 +6,15 @@
 const FolderName = {
     SOURCES_MANAGEMENT : '📚 Sources Management',
     SOURCES_COLLECTION : '📂 Sources Collection',
-    SOURCES_INVENTORY: '📦 Sources Inventory'
+    SOURCES_INVENTORY: '📦 Sources Inventory',
+    MEET_RECORDINGS: 'Meet Recordings',
+    RECORDIGS_FILING: '⏺ Recordings Collection',
+    PROJECTS_FILING: '✔ Projects'
 }
 
 const SheetName = {
     SOURCE : 'Source',
     FOLDER : 'Folder',
+    RECORDING : 'Recording',
+    PROJECT : 'Project'
 }

@@ -1,8 +1,7 @@
 /**
  * Extracts the content of ZIP files to the folder in which the ZIP file is found.
  */
-function extractAndDeleteZipFiles() {
-  var sheet = getSourceSheet();
+function extractAndDeleteZipFiles(sheet = getSourceSheet()) {
   var files = getSheetDataAsObjects(sheet).reverse();
 
   for (var fileData of files) {
